@@ -7,22 +7,29 @@
 
   <Commands package="guidMenuAndCommandsPkg">
     <Groups>
+      <!-- Context menu : File. -->
       <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
       </Group>
+      <!-- Context menu : Folder. -->
       <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x5AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
       </Group>
-      <!--Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x7AA">
+      <!-- Context menu : Project. -->
+      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x7AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
-      </Group-->
+      </Group>
+      <!-- Menu : Project. -->
+      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x8AA">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_PROJECT"/>
+      </Group>
     </Groups>
     
     <Buttons>
       <Button guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
         <Icon guid="guidImages" id="bmpPic1" />
-        <!--CommandFlag>DynamicVisibility</CommandFlag>
-        <CommandFlag>DefaultInvisible</CommandFlag-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
           <ButtonText>Adjust namespaces</ButtonText>
         </Strings>
@@ -34,9 +41,9 @@
     </Bitmaps>
   </Commands>
 
-  <!--VisibilityConstraints>
+  <VisibilityConstraints>
     <VisibilityItem guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" context="uiContextSupportedFiles" />
-  </VisibilityConstraints-->
+  </VisibilityConstraints>
 
   <CommandPlacements>
     <CommandPlacement guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" priority="0x200">
@@ -48,16 +55,16 @@
     <!-- This is the package guid. -->
     <GuidSymbol name="guidMenuAndCommandsPkg" value="{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}" />
 
-    <!-- This is the guid used to group the menu commands together -->
+    <!-- This is the guid used to group the menu commands together. -->
     <GuidSymbol name="guidMenuAndCommandsCmdSet" value="{19492BCB-32B3-4EC3-8826-D67CD5526653}">
       <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
       <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
     </GuidSymbol>
 
     <!-- TODO -->
-    <!--GuidSymbol name="uiContextSupportedFiles" value="{C694C8AD-1300-4ADC-93D8-EBFA2915354B}" /-->
+    <GuidSymbol name="uiContextSupportedFiles" value="{C694C8AD-1300-4ADC-93D8-EBFA2915354B}" />
     
-    <!-- Images -->
+    <!-- Images. -->
     <GuidSymbol name="guidImages" value="{AAE99F64-656C-4A70-B60D-65033959353D}" >
       <IDSymbol name="bmpPic1" value="1" />
     </GuidSymbol>

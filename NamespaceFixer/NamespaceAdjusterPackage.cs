@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using NamespaceFixer.Core;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -30,11 +31,11 @@ namespace NamespaceFixer
     [Guid(Guids.NamespaceFixerPackage)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideOptionPage(typeof(OptionPage), "Namespace Fixer options", "Use default project namespace", 0, 0, true)]
-    //[ProvideUIContextRule(Guids.UiContextSupportedFiles, TODO
-    //    name: "Supported Files",
-    //    expression: "CSharp | VisualBasic",
-    //    termNames: new[] { "CSharp", "VisualBasic" },
-    //    termValues: new[] { "HierSingleSelectionName:.cs$", "HierSingleSelectionName:.vb$" })]
+    [ProvideUIContextRule(Guids.UiContextSupportedFiles,
+        name: "Supported Files",
+        expression: "(SingleProject | MultipleProjects) & (CSharpCapability | VBCapability)",
+        termNames: new[] { "SingleProject", "MultipleProjects", "CSharpCapability", "VBCapability" },
+        termValues: new[] { VSConstants.UICONTEXT.SolutionHasSingleProject_string, VSConstants.UICONTEXT.SolutionHasMultipleProjects_string, "ActiveProjectCapability: CSharp", "ActiveProjectCapability: VB" })]
     public sealed class NamespaceAdjusterPackage : AsyncPackage
     {
         private OptionPage _options;
