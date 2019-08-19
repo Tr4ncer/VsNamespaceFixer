@@ -37,6 +37,10 @@ namespace NamespaceFixer
 
             if (commandService != null)
             {
+                var menuCommandSolutionId = new CommandID(Guids.CmdSetNamespaceFixerSolution, Ids.CmdIdAdjustNamespace);
+                var menuItemSolution = new MenuCommand(MenuItemCallback, menuCommandSolutionId);
+                commandService.AddCommand(menuItemSolution);
+
                 var menuCommandProjectId = new CommandID(Guids.CmdSetNamespaceFixerProject, Ids.CmdIdAdjustNamespace);
                 var menuItemProject = new MenuCommand(MenuItemCallback, menuCommandProjectId);
                 commandService.AddCommand(menuItemProject);
@@ -54,7 +58,7 @@ namespace NamespaceFixer
         /// <param name="e"></param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            // TODO SENDER => Project or File ?
+            // TODO SENDER => Solution, Project or File ?
             ThreadHelper.ThrowIfNotOnUIThread();
 
             try

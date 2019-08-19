@@ -31,6 +31,11 @@ namespace NamespaceFixer
     [Guid(Guids.NamespaceFixerPackage)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideOptionPage(typeof(OptionPage), "Namespace Fixer options", "Use default project namespace", 0, 0, true)]
+    [ProvideUIContextRule(Guids.UiContextSupportedSolution,
+        name: "Supported Solution",
+        expression: "CSharpCapability | VBCapability",
+        termNames: new[] { "CSharpCapability", "VBCapability" },
+        termValues: new[] { "SolutionHasProjectCapability: CSharp", "SolutionHasProjectCapability: VB" })]
     [ProvideUIContextRule(Guids.UiContextSupportedProjects,
         name: "Supported Projects",
         expression: "(SingleProject | MultipleProjects) & (CSharpCapability | VBCapability)",

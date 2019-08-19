@@ -7,9 +7,9 @@
 
   <Commands package="guidMenuAndCommandsPkg">
     <Groups>
-      <!-- Context menu : File. -->
-      <Group guid="guidCmdSetNamespaceFixerFile" id="MyEditorCtxGroup" priority="0x600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      <!-- Context menu : Solution. -->
+      <Group guid="guidCmdSetNamespaceFixerSolution" id="MyEditorCtxGroup" priority="0x500">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_SOLNNODE"/>
       </Group>
       <!-- Context menu : Folder. -->
       <Group guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup" priority="0x5AA">
@@ -23,9 +23,21 @@
       <Group guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup" priority="0x8AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_PROJECT"/>
       </Group>
+      <!-- Context menu : File. -->
+      <Group guid="guidCmdSetNamespaceFixerFile" id="MyEditorCtxGroup" priority="0x600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      </Group>
     </Groups>
     
     <Buttons>
+      <Button guid="guidCmdSetNamespaceFixerSolution" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Adjust all namespaces</ButtonText>
+        </Strings>
+      </Button>
       <Button guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -39,7 +51,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
-          <ButtonText>Adjust namespaces</ButtonText>
+          <ButtonText>Adjust namespace</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -50,11 +62,15 @@
   </Commands>
 
   <VisibilityConstraints>
+    <VisibilityItem guid="guidCmdSetNamespaceFixerSolution" id="CmdIdAdjustNamespace" context="uiContextSupportedSolution" />
     <VisibilityItem guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" context="uiContextSupportedProjects" />
     <VisibilityItem guid="guidCmdSetNamespaceFixerFile" id="CmdIdAdjustNamespace" context="uiContextSupportedFiles" />
   </VisibilityConstraints>
 
   <CommandPlacements>
+    <CommandPlacement guid="guidCmdSetNamespaceFixerSolution" id="CmdIdAdjustNamespace" priority="0x200">
+      <Parent guid="guidCmdSetNamespaceFixerSolution" id="MyEditorCtxGroup"/>
+    </CommandPlacement>
     <CommandPlacement guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" priority="0x200">
       <Parent guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup"/>
     </CommandPlacement>
@@ -68,6 +84,10 @@
     <GuidSymbol name="guidMenuAndCommandsPkg" value="{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}" />
 
     <!-- This is the guid used to group the menu commands together. -->
+    <GuidSymbol name="guidCmdSetNamespaceFixerSolution" value="{71571E94-4919-4ACC-9F08-51A6B2E2EF30}">
+      <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
+      <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
+    </GuidSymbol>
     <GuidSymbol name="guidCmdSetNamespaceFixerProject" value="{19492BCB-32B3-4EC3-8826-D67CD5526653}">
       <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
       <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
@@ -77,7 +97,8 @@
       <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
     </GuidSymbol>
 
-    <!-- TODO -->
+    <!-- UIContext and support. -->
+    <GuidSymbol name="uiContextSupportedSolution" value="{8AC56601-C6BD-465B-9DD6-5B6C3ECFF65B}" />
     <GuidSymbol name="uiContextSupportedProjects" value="{C694C8AD-1300-4ADC-93D8-EBFA2915354B}" />
     <GuidSymbol name="uiContextSupportedFiles" value="{24308ADC-7EF3-4832-A79F-DCFCBDDA9B40}" />
 
