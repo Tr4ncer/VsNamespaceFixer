@@ -37,22 +37,15 @@ namespace NamespaceFixer
 
             if (commandService != null)
             {
-                var menuCommandID = new CommandID(Guids.NamespaceFixerCmdSet, Ids.CmdIdAdjustNamespace);
-                var menuItem = new OleMenuCommand(MenuItemCallback, menuCommandID);
-                //menuItem.BeforeQueryStatus += ButtonQueryStatus; TODO
+                var menuCommandProjectId = new CommandID(Guids.CmdSetNamespaceFixerProject, Ids.CmdIdAdjustNamespace);
+                var menuItemProject = new MenuCommand(MenuItemCallback, menuCommandProjectId);
+                commandService.AddCommand(menuItemProject);
 
-                commandService.AddCommand(menuItem);
+                var menuCommandFileId = new CommandID(Guids.CmdSetNamespaceFixerFile, Ids.CmdIdAdjustNamespace);
+                var menuItemFile = new MenuCommand(MenuItemCallback, menuCommandFileId);
+                commandService.AddCommand(menuItemFile);
             }
         }
-
-        // TODO
-        //private void ButtonQueryStatus(object sender, EventArgs e)
-        //{
-        //    var button = (MenuCommand)sender;
-        //    button.Visible = false;
-
-        //    _serviceInfo.GetSelectedProjects();
-        //}
 
         /// <summary>
         /// Click on the button 'Adjust namespaces'.
@@ -61,6 +54,7 @@ namespace NamespaceFixer
         /// <param name="e"></param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
+            // TODO SENDER => Project or File ?
             ThreadHelper.ThrowIfNotOnUIThread();
 
             try

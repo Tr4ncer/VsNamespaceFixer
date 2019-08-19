@@ -8,25 +8,33 @@
   <Commands package="guidMenuAndCommandsPkg">
     <Groups>
       <!-- Context menu : File. -->
-      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x600">
+      <Group guid="guidCmdSetNamespaceFixerFile" id="MyEditorCtxGroup" priority="0x600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
       </Group>
       <!-- Context menu : Folder. -->
-      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x5AA">
+      <Group guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup" priority="0x5AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
       </Group>
       <!-- Context menu : Project. -->
-      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x7AA">
+      <Group guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup" priority="0x7AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
       </Group>
       <!-- Menu : Project. -->
-      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x8AA">
+      <Group guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup" priority="0x8AA">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_PROJECT"/>
       </Group>
     </Groups>
     
     <Buttons>
-      <Button guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
+      <Button guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Adjust namespaces</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCmdSetNamespaceFixerFile" id="CmdIdAdjustNamespace" priority="0x100" type="Button">
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -42,12 +50,16 @@
   </Commands>
 
   <VisibilityConstraints>
-    <VisibilityItem guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" context="uiContextSupportedFiles" />
+    <VisibilityItem guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" context="uiContextSupportedProjects" />
+    <VisibilityItem guid="guidCmdSetNamespaceFixerFile" id="CmdIdAdjustNamespace" context="uiContextSupportedFiles" />
   </VisibilityConstraints>
 
   <CommandPlacements>
-    <CommandPlacement guid="guidMenuAndCommandsCmdSet" id="CmdIdAdjustNamespace" priority="0x200">
-      <Parent guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup"/>
+    <CommandPlacement guid="guidCmdSetNamespaceFixerProject" id="CmdIdAdjustNamespace" priority="0x200">
+      <Parent guid="guidCmdSetNamespaceFixerProject" id="MyEditorCtxGroup"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidCmdSetNamespaceFixerFile" id="CmdIdAdjustNamespace" priority="0x200">
+      <Parent guid="guidCmdSetNamespaceFixerFile" id="MyEditorCtxGroup"/>
     </CommandPlacement>
   </CommandPlacements>
   
@@ -56,14 +68,19 @@
     <GuidSymbol name="guidMenuAndCommandsPkg" value="{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}" />
 
     <!-- This is the guid used to group the menu commands together. -->
-    <GuidSymbol name="guidMenuAndCommandsCmdSet" value="{19492BCB-32B3-4EC3-8826-D67CD5526653}">
+    <GuidSymbol name="guidCmdSetNamespaceFixerProject" value="{19492BCB-32B3-4EC3-8826-D67CD5526653}">
+      <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
+      <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
+    </GuidSymbol>
+    <GuidSymbol name="guidCmdSetNamespaceFixerFile" value="{43F670C9-731D-414C-86F1-DF489BC29795}">
       <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
       <IDSymbol name="CmdIdAdjustNamespace" value="0x2001" />
     </GuidSymbol>
 
     <!-- TODO -->
-    <GuidSymbol name="uiContextSupportedFiles" value="{C694C8AD-1300-4ADC-93D8-EBFA2915354B}" />
-    
+    <GuidSymbol name="uiContextSupportedProjects" value="{C694C8AD-1300-4ADC-93D8-EBFA2915354B}" />
+    <GuidSymbol name="uiContextSupportedFiles" value="{24308ADC-7EF3-4832-A79F-DCFCBDDA9B40}" />
+
     <!-- Images. -->
     <GuidSymbol name="guidImages" value="{AAE99F64-656C-4A70-B60D-65033959353D}" >
       <IDSymbol name="bmpPic1" value="1" />
